@@ -1,0 +1,11 @@
+version: 0.1
+phases:
+  install:
+    commands:
+      - npm install aws-sdk
+      - aws cloudformation package --template-file samTemplate.yaml --s3-bucket lambda-transcoder-bucket
+                                   --output-template-file NewSamTemplate.yaml
+artifacts:
+  type: zip
+  files:
+    - NewSamTemplate.yaml
